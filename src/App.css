@@ -1,0 +1,38 @@
+.container{
+  margin: 14% 40%;
+  width: 400px;
+  height: 500px;
+  background-color: black;
+  color: white;
+  text-align: center;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: bold;
+  font-size: larger;
+}
+form{
+  margin: 20px;
+  padding: 20px;
+ 
+}
+.con1{
+  margin: 20px;
+ display: flex;
+ justify-content: space-evenly;
+}
+#t{
+  font-size: xx-large;
+}
+.btn{
+  border-radius: 50%;
+}
+.cont{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  background-color: rgb(216, 141, 29);
+}
+.dd{
+  width: 50px;
+  height: 10px;
+ 
+}
