@@ -1,30 +1,16 @@
-import { React, useState } from "react";
+import React, { useState } from 'react'
 
-const Todo = () => {
-  const [task, setTask] = useState("");
+function Todo() {
+    const [task, setTask] = useState("");
+  const [status, setStatus] = useState("");
   const [todo, setTodo] = useState([
     {
       id: '',
       name: '',
-      status: ''
+      cstatus: ''
     }
   ]);
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // setTodo([...todo, task]);
-    // setTodo((todo)=>{const newlist=[...todo, task]
-
-    //   console.log(todo)
-    //   setTask('');
-    //   return newlist
-    setTodo((todo) => [...todo, task]);
-    setTask("");
-    //});
-  };
-
-  const handleChangeName = (event) => {
-    setTask(event.target.value);
-  };
+  
   const removetask = (i) => {
     const updateddata = todo.filter((elem)=>{
     return elem.id !== i;
@@ -40,73 +26,58 @@ const Todo = () => {
 // }
 
   return (
-    // <div className="container">
-    //   <div>
-    //     <span id="t">To Dos</span>
-    //   </div>
-
-    //   <form onSubmit={handleSubmit}>
-    //     <div>
-    //       <span>Add New Task</span>
-    //       <br></br>
-    //       <div className="con1">
-    //         <div>
-    //           {" "}
-    //           <input
-    //             type="text"
-    //             value={task}
-    //             onChange={handleChangeName}
-    //             placeholder="Add new task"
-    //           />{" "}
-    //         </div>
-    //       </div>
-    //       <button type="submit">Add</button>
-    //       <h2>Task to do</h2>
-    //       {todo != [] &&
-    //         todo.map((data, i) => {
-    //           return (
-    //             <div className="List">
-    //               <p key={i}>
-    //                 <div className="cont">
-    //                   <div className="dd">{data} </div>
-    //                   <div>
-    //                     <button className="btn" onClick={removetask(i)}>
-    //                       -
-    //                     </button>
-    //                   </div>
-    //                 </div>
-    //               </p>
-    //             </div>
-    //           );
-    //         })}
-    //     </div>
-    //   </form>
-    // </div>
-
-    <div>
-      <input
-        type="text"
-        value={task}
-        onChange={(e) => setTask(e.target.value)}
-      />
-      <button
-        onClick={() => {
-          setTodo((todo) => [...todo, { id: Date.now(), name: task,  }]);
-          setTask(" ");
-        }}
-      >
-        Add
-      </button>
-      {todo?.map((item) => {
-        return (
-          <div key={item.id} style={{ display: 'flex', gap: '10px'}}>
-            <li>{item.name}</li>
-            <button onClick={()=>{removetask(item.id)}}>-</button>
+  
+      <div  className='container'>
+          <h1 className='heading'>To Dos</h1>
+          
+          <div className='const'>
+          <h2 className='heading'>Filter task</h2>
+          <input type="checkbox"   value={status}/>
+          <label>Pending</label>
+          <input type="checkbox"  value={status}/>
+          <label>In Progress</label>
+          <input type="checkbox"   value={status}/>
+          <label>Done</label>
           </div>
-        );
-      })}
-    </div>
-  );
-};
+          <div className="con1">  
+          <label >Task</label>
+    <input
+      type="text"
+     
+      value={task}
+      onChange={(e) => setTask(e.target.value)}
+      
+    />
+     <label >Status</label>
+     <select value={status} onChange={(e) => setStatus(e.target.value)}>
+          <option></option>
+        <option >Pending</option>
+        <option>In progress</option>
+        <option >Done</option>
+      </select>
+      </div>
+    <button
+      onClick={() => {
+        setTodo((todo) => [...todo, { id: Date.now(), name: task, cstatus: status,   }]);
+        setTask(" ");
+        setStatus("");
+      }}
+    >
+      Add
+    </button>
+    {todo?.map((item) => {
+      return (
+        <div key={item.id} className="cont">
+          <div className="dd">{item.name} </div> <div className="dd">  {item.cstatus}</div>
+          <div className="dd">
+          <button onClick={()=>{removetask(item.id)}} className='btn'>-</button> </div>
+          {/* <button onClick={()=>{edittask(item.id)}}>-</button> */}
+        </div>
+      );
+    })}
+  </div>
+);
+    
+}
 
 export default Todo;

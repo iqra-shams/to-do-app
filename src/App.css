@@ -1,6 +1,7 @@
 .container{
-  margin: 14% 40%;
-  width: 400px;
+  
+  margin: 5% 30%;
+  width: 500px;
   height: 500px;
   background-color: black;
   color: white;
@@ -10,6 +11,9 @@
   font-size: larger;
 }
 form{
+ 
+  background-color: black;
+  color: white;
   margin: 20px;
   padding: 20px;
  
@@ -28,11 +32,18 @@ form{
 .cont{
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-around;
   background-color: rgb(216, 141, 29);
+  margin: 30px 80px;
+ 
+  border-radius: 10px;
+  
 }
 .dd{
-  width: 50px;
-  height: 10px;
+  
+width:40%
  
+}
+.heading{
+  color: orange;
 }
