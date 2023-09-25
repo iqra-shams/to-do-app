@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
-
+import NoteAddOutlinedIcon from '@mui/icons-material/NoteAddOutlined';
+import FilterAltOutlinedIcon from '@mui/icons-material/FilterAltOutlined';
+import EditNoteOutlinedIcon from '@mui/icons-material/EditNoteOutlined';
+import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined';
+import DeleteIcon from '@mui/icons-material/Delete';
 function Test() {
   const [task, setTask] = useState("");
   const [status, setStatus] = useState("");
@@ -81,7 +85,7 @@ function Test() {
      
       <div className="con1">
      <div>
-   
+   <FilterAltOutlinedIcon style={{ fontSize: 30 }}/>
       <select value={updateddata} onChange={(e) => SetResult(e.target.value)}>
        
         <option></option>
@@ -101,8 +105,8 @@ function Test() {
           setStatus("");
         }}
       >
-        {console.log(todo, "tasks")}
-        Add
+        <NoteAddOutlinedIcon/ >
+        
       </button>
       </div>
      </div>
@@ -129,7 +133,7 @@ function Test() {
                 }}
                 className="btn"
               >
-                -
+               <DeleteIcon style={{ fontSize: 20 }} />
               </button>
             </div>
             {edit && item.id === editId ? (
@@ -139,16 +143,17 @@ function Test() {
                 }}
                 className="btn"
               >
-                Save
+               <SaveOutlinedIcon/>
               </button>
             ) : (
               <button
                 onClick={() => {
                   edittask(item);
+                 
                 }}
                 className="btn"
               >
-                Edit
+              <EditNoteOutlinedIcon style={{ fontSize: 20 }} />
               </button>
             )}
           </div>
