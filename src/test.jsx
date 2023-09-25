@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 function Test() {
   const [task, setTask] = useState("");
@@ -7,7 +7,18 @@ function Test() {
   const [edit, setEdit] = useState(false);
   const [edited, setEdited] = useState('');
   const [editId, setEditId] = useState("");
+  const [updateddata, setUpdateddata] = useState();
+  const [result, SetResult] = useState();
 
+
+  const filterdata = (e) => {
+    setUpdateddata(e.target.value);
+    // console.log(updateddata,"567")
+    const result = todo.filter(data =>
+      data.cstatus === updateddata,);
+
+    console.log(result, "rtyrty");
+  }
   const removetask = (taskId) => {
     const updatedData = todo.filter((elem) => elem.id !== taskId);
     setTodo(updatedData);
@@ -27,15 +38,29 @@ function Test() {
     }
     setEdited('');
   };
+  // useEffect(()=>{
+  //   console.log("mountain due");
+  //   console.log(updateddata);
+
+  //   const result= todo.filter((data)=>
+  //     data.cstatus.includes("pending"),
+  //   );
+  //   console.log(result);
+  // },[updateddata])
 
   return (
     <div className="container">
       <h1 className="heading">To Dos</h1>
 
-      <div className="const">
-        <h2 className="heading">Filter task</h2>
-        {/* Add your filtering checkboxes here */}
-      </div>
+      {/* <div className="const">
+        <h2 className="heading">Filter task</h2> */}
+      {/* Add your filtering checkboxes here */}
+      {/* <input type="checkbox"  value="pending"   onClick={()=>{setUpdateddata("pending")}}/>Pending
+       <input type="checkbox" value="In progress"   onClick={()=>{setUpdateddata("in progress")}}/>In Progress
+       <input type="checkbox" value="Done"    onClick={()=>{setUpdateddata("Done")}}/>Done
+      
+        
+      </div> */}
 
       <div className="con1">
         <label>Task</label>
@@ -52,8 +77,20 @@ function Test() {
           <option>In progress</option>
           <option>Done</option>
         </select>
+      </div> 
+     
+      <div className="con1">
+     <div>
+   
+      <select value={updateddata} onChange={(e) => SetResult(e.target.value)}>
+       
+        <option></option>
+        <option>Pending</option>
+        <option>In progress</option>
+        <option>Done</option>
+      </select>
       </div>
-
+      <div>
       <button
         onClick={() => {
           setTodo((todo) => [
@@ -64,11 +101,14 @@ function Test() {
           setStatus("");
         }}
       >
+        {console.log(todo, "tasks")}
         Add
       </button>
+      </div>
+     </div>
       {todo?.map((item) => {
         return (
-          <div key={item.id} className="cont">
+          item.cstatus === result && <div key={item.id} className="cont">
             {edit && item.id === editId ? (
               <input
                 type="text"
@@ -114,6 +154,7 @@ function Test() {
           </div>
         );
       })}
+     
     </div>
   );
 }
